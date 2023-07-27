@@ -6,11 +6,27 @@ describe('Basic Practice', () => {
   });
 
   describe('Adding a new item', () => {
-    it('should put a new item on the page after clicking on "Add Item"', () => {});
+    it('should put a new item on the page after clicking on "Add Item"', () => {
+      const newItem = 'New item';
+      cy.get('[data-test="new-item-input"]').type(newItem);
+      cy.get('[data-test="add-item"]').click();
+      cy.contains(newItem)
+    });
 
-    it('should put a new item in the "Unpacked Items" list', () => {});
+    it('should put a new item in the "Unpacked Items" list', () => {
+      const newItem = 'New item';
+      cy.get('[data-test="new-item-input"]').type(newItem);
+      cy.get('form').submit();
+      cy.get('[data-test="items-unpacked"]').contains(newItem);
 
-    it('should put a new item as the last item in the "Unpacked Items" list', () => {});
+    });
+
+    it('should put a new item as the last item in the "Unpacked Items" list', () => {
+      const newItem = 'New item';
+      cy.get('[data-test="new-item-input"]').type(newItem);
+      cy.get('form').submit();
+      cy.get('[data-test="items-unpacked"]').last().contains(newItem)
+    });
   });
 
   describe('Filtering items', () => {
