@@ -30,20 +30,35 @@ describe('Basic Practice', () => {
   });
 
   describe('Filtering items', () => {
-    it('should show items that match whatever is in the filter field', () => {});
+    it('should show items that match whatever is in the filter field', () => {
+      const filterWord = 'Tooth';
+      cy.get('[data-test="filter-items"]').type(filterWord);
+      cy.get('[data-test="items-unpacked"]').contains(filterWord)
+
+    });
 
     it('should hide items that do not match whatever is in the filter field', () => {});
   });
 
   describe('Removing items', () => {
     describe('Remove all', () => {
-      it('should remove all of the items', () => {});
+      it('should remove all of the items', () => {
+        cy.get('[data-test="remove-all"]').click();
+        cy.get('[data-test="items"] li').should('not.exist');
+      });
     });
 
     describe('Remove individual items', () => {
-      it('should have a remove button on an item', () => {});
+      it('should have a remove button on an item', () => {
+        cy.get('[data-test="items"] li').find('[data-test="remove"]');
+      });
 
-      it('should remove an item from the page', () => {});
+      it('should remove an item from the page', () => {
+        cy.get('[data-test="items"] li').each((li) => {
+          cy.wrap(li).find('[data-test="remove"]').click();
+          cy.wrap(li).should('not.exist')
+        });
+      });
     });
   });
 

@@ -38,8 +38,10 @@ describe('Basic Practice', () => {
     it('should show items that match whatever is in the filter field', () => {
       cy.get('[data-test="filter-items"]').type('Tooth');
 
-      cy.contains('Tooth Brush');
-      cy.contains('Tooth Paste');
+      cy.contains('[data-test=items] li').each(($item)=> {
+        expect($item.text()).to.include('Tooth')
+      })
+     
     });
 
     it('should hide items that do not match whatever is in the filter field', () => {
