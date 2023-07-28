@@ -13,8 +13,9 @@ describe('Input obstacles', () => {
   });
 
   it('should control a select input', () => {
-    cy.get('[data-test="select-input"]');
-    cy.get('[data-test="select-result"]');
+    const thor = 'Thor';
+    cy.get('[data-test="select-input"]').select(thor);
+    cy.get('[data-test="select-result"]').contains(thor);
   });
 
   it('should find and control a checkbox input', () => {
