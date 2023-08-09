@@ -9,6 +9,7 @@ describe('Sign Up', () => {
 
   it('should require an email', () => {
     cy.get('@submit').click();
+
     cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
 
     cy.get('[data-test="sign-up-email"]:invalid')
