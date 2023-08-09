@@ -7,8 +7,10 @@ const user = {
   password: 'password123',
 };
 
-export const decodeToken = (token) => JSON.parse(Buffer.from(token, 'base64').toString('utf-8'));
-export const encodeToken = (token) => Buffer.from(JSON.stringify(token)).toString('base64');
+export const decodeToken = (token) =>
+  JSON.parse(Buffer.from(token, 'base64').toString('utf-8'));
+export const encodeToken = (token) =>
+  Buffer.from(JSON.stringify(token)).toString('base64');
 
 describe('Signing in with a seeded database', () => {
   beforeEach(() => {
