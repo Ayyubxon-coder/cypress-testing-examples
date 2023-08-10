@@ -29,9 +29,7 @@ describe('Dog Facts', () => {
   it('should adjust the amount when the select is changed', () => {
     cy.get('@amountSelect').select('4');
     cy.get('@fetchButton').click();
-    cy.wait('@api').then((interception) => {
-      expect(interception.request.url).to.match(/\?amount=4$/);
-    });
+    cy.wait('@api').its('request.url').should('contain', 'amount=4');
   });
 
   it('should show the correct number of facts on the page', () => {
